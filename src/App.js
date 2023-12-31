@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { useState } from "react";
+import ToolTip from "./Components/ToolTip.jsx";
 function App() {
+  const [position, setPosition] = useState("right");
+  console.log(position);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <header>
+        <h1>Tooltip Demo</h1>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Select tooltip position of your choice, You will get the tooltip at
+          the selected position
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="selectPosition">
+          <h3>Select tooltip position</h3>
+          <select
+            defaultValue={position}
+            onChange={(e) => setPosition(e.target.value)}
+          >
+            <option value="top">Top</option>
+            <option value="bottom">Bottom</option>
+            <option value="right">Right</option>
+            <option value="left">Left</option>
+          </select>
+        </div>
+        <h4>Current tooltip position is {position}</h4>
       </header>
+      <ToolTip position={position} />
     </div>
   );
 }
